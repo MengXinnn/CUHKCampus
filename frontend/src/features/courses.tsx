@@ -1,7 +1,8 @@
 import "./courses.css";
+import { Gradebook } from "./Gradebook";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Download,
   Folder,
@@ -33,7 +34,6 @@ function courseTitle(course:Item) { return course.customName || String(course.na
 function courseTone(course:Item) { return [...String(courseCode(course))].reduce((n,c)=>n+c.charCodeAt(0),0)%4; }
 export function Courses() {
   const [q, setQ] = useState(""),
-    [create, setCreate] = useState(false),
     [term, setTerm] = useState(""),
     [archived, setArchived] = useState(false);
   const data = useData("/courses");
@@ -42,12 +42,12 @@ export function Courses() {
   const visible=courses.filter(c=>(!term||c.term===term)&&(archived||!c.archived)&&(!q||`${c.code||""} ${c.customName||c.name}`.toLowerCase().includes(q.toLowerCase())));
   return (
     <section className="courses-page">
-      <PageHeader title="课程中心">
-        <button className="secondary" onClick={()=>setCreate(true)}><Plus size={16}/>添加课程</button>
-      </PageHeader>
+      <div className="courses-sticky-heading">
+      <PageHeader title="课程中心"/>
       <div className="courses-toolbar">
         <div className="courses-term"><GraduationCap size={18}/><select aria-label="筛选学期" value={term} onChange={e=>setTerm(e.target.value)}><option value="">全部学期</option>{terms.map(value=><option key={value}>{value}</option>)}</select></div>
         <div className="courses-toolbar-actions"><SearchBox value={q} onChange={setQ} placeholder="搜索课程"/><button className={"icon courses-archive"+(archived?" active":"")} aria-label="显示归档课程" aria-pressed={archived} title="显示归档课程" onClick={()=>setArchived(!archived)}><Archive size={17}/></button></div>
+      </div>
       </div>
       <ErrorText error={data.error}/>
       <div className="courses-collection">
@@ -59,26 +59,6 @@ export function Courses() {
         </Link>)}
       </div>
       {data.isSuccess&&!visible.length&&<Empty>{q||term?"没有匹配的课程":"暂无课程"}</Empty>}
-      {create && (
-        <FormModal
-          title="添加课程"
-          close={() => setCreate(false)}
-          submit={(d) => api("/courses", "POST", d)}
-        >
-          <Field label="课程代码">
-            <input name="code" required />
-          </Field>
-          <Field label="课程名称">
-            <input name="name" required />
-          </Field>
-          <Field label="学期">
-            <input name="term" required />
-          </Field>
-          <Field label="教师">
-            <input name="teacher" />
-          </Field>
-        </FormModal>
-      )}
     </section>
   );
 }
@@ -202,10 +182,6 @@ export function CourseDetail() {
       )}
     </div>
   );
-}
-function Gradebook({courseId}:{courseId:string}) {
-  const grades=useQuery<Item[]>({queryKey:["/courses/"+courseId+"/grades"],queryFn:()=>api("/courses/"+courseId+"/grades")});
-  return <div className="course-gradebook"><ErrorText error={grades.error}/>{grades.data?.length===0&&<Empty>暂无成绩项目</Empty>}{!!grades.data?.length&&<table><thead><tr><th>项目</th><th>成绩</th><th>满分</th></tr></thead><tbody>{grades.data.map(column=><tr key={column.id}><td>{column.name}</td><td>{column.grade?.exempt?"已豁免":column.grade?.score??"未评分"}</td><td>{column.score?.possible??"—"}</td></tr>)}</tbody></table>}</div>;
 }
 function ContentDetail({ id, close }: { id: string; close: () => void }) {
   const qc = useQueryClient();

@@ -1,0 +1,51 @@
+.gradebook-view { padding:8px 8px 4px; animation:course-arrive 240ms var(--ease); }
+.grade-summary-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-bottom:12px; }
+.grade-summary { border-radius:18px; padding:18px; background:#f0eef6; color:#77718d; min-width:0; }
+.grade-summary.emphasis { background:#e5eddc; color:#637b50; }
+.grade-summary-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.grade-summary-heading h3 { font-size:12px; font-weight:550; margin:0; }
+.grade-summary-heading>span { opacity:.6; font-size:11px; }
+.grade-summary-score { display:flex; align-items:baseline; gap:8px; margin:14px 0 14px; flex-wrap:wrap; }
+.grade-summary-score strong { font-size:30px; font-weight:600; letter-spacing:-1.4px; line-height:1.2; }
+.grade-summary-score>span { font-size:12px; opacity:.6; }
+.grade-summary-meter { height:4px; background:#ffffff85; overflow:hidden; border-radius:5px; }
+.grade-summary-meter>span { display:block; height:100%; background:currentColor; border-radius:inherit; transition:width 400ms var(--ease); }
+.grade-summary p { font-size:10px; margin:10px 0 0; opacity:.65; }
+.grade-overview { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:12px 4px 18px; }
+.grade-overview-primary { display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.grade-overview-primary>span { font-size:12px; color:#849079; }
+.grade-overview-primary>strong { font-size:28px; font-weight:550; letter-spacing:-1px; color:#415238; }
+.grade-overview-primary>small { font-size:10px; color:#abb3a2; }
+.grade-overview-counts { display:flex; gap:30px; }
+.grade-overview-counts>div { display:flex; flex-direction:column; gap:8px; }
+.grade-overview-counts strong { font-size:22px; font-weight:500; color:#657659; font-variant-numeric:tabular-nums; }
+.grade-overview-counts small { font-size:11px; color:#b1b8a9; font-weight:400; }
+.grade-overview-counts span { font-size:11px; color:#98a18e; }
+.grade-section-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px; }
+.grade-section-heading h3 { font-size:13px; font-weight:600; margin:0; }
+.grade-section-heading>span { font-size:10px; color:#a0aa95; }
+.grade-distribution { background:#f8faf5; padding:16px 20px 12px; border-radius:16px; margin-bottom:20px; }
+.grade-chart { display:flex; gap:14px; height:120px; padding:14px 0 0; }
+.grade-chart-column { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.grade-chart-track { display:flex; align-items:center; justify-content:flex-end; flex-direction:column; height:80px; width:100%; position:relative; padding-top:14px; }
+.grade-chart-bar { flex-shrink:0; width:70%; max-width:50px; min-height:2px; border-radius:6px 6px 2px 2px; background:#bdcea7; transition:height 350ms var(--ease); }
+.grade-chart-column:last-child .grade-chart-bar { background:#8fae70; }
+.grade-chart-count { font-size:10px; color:#8f9e81; margin-bottom:4px; }
+.grade-chart-label { font-size:9px; color:#a3ad99; white-space:nowrap; }
+.grade-filters { display:flex; gap:3px; background:#f1f5ed; padding:3px; border-radius:9px; }
+.grade-filters button { border:0; background:transparent; color:#9aa58f; border-radius:7px; font-size:10px; padding:5px 9px; white-space:nowrap; }
+.grade-filters button[aria-pressed=true] { background:#fff; color:#526d40; box-shadow:0 1px 3px #263d1b0a; }
+.grade-item { display:flex; align-items:center; gap:12px; padding:16px 0; border-bottom:1px solid #eff2e9; }
+.grade-item:last-child { border:0; }
+.grade-item-status { flex-shrink:0; display:grid; place-items:center; width:30px; height:30px; border-radius:10px; color:#b5beab; background:#f5f7f1; }
+.grade-item-status.graded { background:#ecf2e4; color:#8ba370; }
+.grade-item-main { flex:1; min-width:0; }
+.grade-item h4 { font-size:12px; font-weight:500; margin:0; overflow-wrap:anywhere; color:#59654f; }
+.grade-item-meter { height:3px; width:100%; max-width:180px; border-radius:4px; background:#f0f4e9; margin-top:9px; overflow:hidden; }
+.grade-item-meter span { display:block; height:100%; background:#b8cba2; border-radius:inherit; }
+.grade-item-score { text-align:right; flex-shrink:0; min-width:60px; }
+.grade-item-score strong { display:block; font-size:13px; font-weight:550; color:#5b704b; }
+.grade-item-score>span { display:block; font-size:9px; color:#abb5a0; margin-top:5px; }
+.grade-item-percent { width:50px; flex-shrink:0; text-align:right; color:#a2af94; font-size:11px; font-variant-numeric:tabular-nums; }
+@media(max-width:600px) { .grade-summary { padding:16px; } .grade-summary-score strong { font-size:27px; } .grade-overview { gap:16px; flex-wrap:wrap; } .grade-overview-counts { gap:24px; } .grade-chart { gap:5px; } .grade-distribution { padding:16px 10px 12px; } .gradebook-view { padding:4px 0; } .grade-item { gap:8px; } .grade-item-percent { display:none; } }
+@media(prefers-reduced-motion:reduce) { .gradebook-view { animation:none; } .gradebook-view * { transition:none!important; } }

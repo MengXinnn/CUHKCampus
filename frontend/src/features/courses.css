@@ -76,11 +76,6 @@
 .course-document strong { display:block; font-size:12px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .course-document small { font-size:10px; color:#a1ac98; display:block; margin-top:5px; }
 .course-document>svg:last-child { color:#a3b094; flex-shrink:0; }
-.course-detail .course-gradebook { overflow:auto; }
-.course-detail .course-gradebook table { width:100%; border-collapse:collapse; font-size:12px; }
-.course-detail .course-gradebook th { color:#98a18f; font-size:11px; font-weight:400; }
-.course-detail .course-gradebook :is(th,td) { padding:16px 12px; border-bottom:1px solid #edf1e7; text-align:left; }
-.course-detail .course-gradebook td:nth-child(2) { font-weight:600; color:#61794d; }
 .course-meetings { max-height:250px; overflow:auto; }
 .course-meeting { display:flex; align-items:flex-start; gap:10px; padding:12px 0; color:#90a17f; border-bottom:1px solid #f0f3eb; }
 .course-meeting:last-child { border:0; }
@@ -94,3 +89,10 @@
 @media(max-width:800px) { .courses-collection { grid-template-columns:repeat(2,minmax(0,1fr)); } .course-workspace { grid-template-columns:1fr; } .course-aside { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); } .course-hero { flex-direction:column; gap:20px; } .course-material-panel { max-height:550px; } }
 @media(max-width:520px) { .courses-collection { grid-template-columns:1fr; } .course-tile { min-height:230px; } .courses-toolbar { align-items:stretch; flex-direction:column; gap:12px; } .courses-toolbar-actions .search { flex:1; width:auto; } .course-aside { display:flex; } .course-tabs { gap:24px; padding:0 18px; } .course-hero h1 { font-size:22px; } }
 @media(prefers-reduced-motion:reduce) { .courses-page *,.course-detail * { animation:none!important; transition:none!important; } }
+.courses-sticky-heading { position:sticky; top:0; z-index:10; padding:4px 0 16px; margin-bottom:8px; background:#f1f6f7; }
+.courses-sticky-heading .courses-toolbar { margin-bottom:0; }
+.courses-term { padding:0 12px; border:1px solid #dce5d6; border-radius:14px; background:#ffffffa6; min-height:42px; }
+.courses-term select { max-width:220px; }
+.course-document-grid>.empty { grid-column:1/-1; min-height:300px; display:flex; align-items:center; justify-content:center; margin:0; text-align:center; }
+
+.course-aside-card .empty { padding:20px 0; min-height:0; }
