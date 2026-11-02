@@ -9,6 +9,35 @@
 - Docker Desktop，用于 PostgreSQL 17。
 - LibreOffice，`soffice` 在 PATH 中，用于 Word、PowerPoint 和 Excel 原排版预览；也可设置 `CAMPUS_SOFFICE_BINARY`。
 
+## Windows
+
+在 Windows 10/11 的项目根目录运行以下命令。setup 会检查运行环境，通过 WinGet 自动下载安装缺失的 JDK 21、Node.js LTS（含 npm）、Google Chrome、LibreOffice、curl 和 Docker Desktop（含 Compose），随后下载 PostgreSQL 镜像及项目依赖。每项下载前都会在终端提示软件名称和安装过程。已有满足版本要求的软件不会重复安装。
+
+安装时会弹出 Windows 管理员授权；若系统没有 WinGet，脚本会先从微软安装 WinGet。首次启用 WSL 2 可能需要重启，脚本会提示重启后再次运行 setup，不会自动重启电脑。Docker 首次启动的协议或系统虚拟化要求需在其窗口完成。
+
+```bat
+scripts\setup.cmd
+scripts\start.cmd
+```
+
+PowerShell 也可以运行以上 `.cmd` 文件，或直接运行：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start.ps1
+```
+
+安装脚本生成本地 `.env`、数据库密码和加密密钥，自动启动 Docker 并等待 PostgreSQL 就绪后构建前后端；已有 `.env` 保留。启动后访问 `http://localhost:8080`，在终端按 Ctrl+C 停止应用。脚本可以从其他目录执行，也支持路径含空格。
+
+Chrome 与 LibreOffice 会从 Windows 常见安装目录查找。自定义安装位置可在 `.env` 中配置，路径使用正斜杠、不加引号：
+
+```properties
+CAMPUS_CHROME_BINARY=C:/Program Files/Google/Chrome/Application/chrome.exe
+CAMPUS_SOFFICE_BINARY=C:/Program Files/LibreOffice/program/soffice.exe
+```
+
+使用本机或远程 PostgreSQL 时，先复制 `.env.example` 为 `.env` 并配置数据库连接、密码与 `CAMPUS_ENCRYPTION_KEY`（32 字节随机值的 Base64），然后执行 `scripts\setup.cmd -SkipDocker` 和 `scripts\start.cmd -SkipDocker`。此模式要求数据库已创建并启动。安装脚本需要 Node.js，日常启动只需要 Java 及相关运行依赖。
+
 ## 启动
 
 ```sh
