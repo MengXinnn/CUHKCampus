@@ -1,0 +1,53 @@
+.calendar-card.campus-calendar { display:flex; flex-direction:column; height:calc(100dvh - 180px); min-height:600px; padding:0; overflow:hidden; }
+.calendar-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:20px 24px; }
+.calendar-navigation { display:flex; align-items:center; gap:24px; min-width:0; }
+.calendar-navigation h2 { font-size:18px; font-weight:650; margin:0; letter-spacing:-.4px; }
+.calendar-date-actions { display:flex; align-items:center; gap:2px; }
+.calendar-today { border:0; background:transparent; padding:6px 10px; color:#69776b; font-size:12px; border-radius:8px; }
+.calendar-today:hover { background:#eff3eb; }
+.calendar-views { display:flex; padding:4px; gap:3px; border-radius:12px; background:#f0f3ed; }
+.calendar-views button { border:0; border-radius:9px; background:transparent; color:#7a8679; min-width:42px; padding:6px 12px; font-size:12px; }
+.calendar-views button.active { background:white; color:#27382b; box-shadow:0 1px 4px #24342612; }
+.calendar-grid { flex:1; min-height:0; }
+.campus-calendar .fc { --fc-border-color:#edf0ea; --fc-today-bg-color:#f7f9f1; --fc-page-bg-color:white; color:#29382e; }
+.campus-calendar .fc-scrollgrid { border:0; border-radius:0; }
+.campus-calendar .fc-col-header-cell { padding:10px 0; }
+.calendar-day-heading { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.calendar-day-heading span { color:#8b968b; font-size:11px; font-weight:400; }
+.calendar-day-heading b { display:grid; place-items:center; font-size:17px; font-weight:550; width:30px; height:30px; border-radius:50%; }
+.fc-day-today .calendar-day-heading b { background:#dfe9cb; color:#3c5234; }
+.campus-calendar .fc-timegrid-slot { height:32px; }
+.campus-calendar .fc-timegrid-slot-label { border:0; }
+.campus-calendar .fc-timegrid-slot-label-cushion { color:#9aa399; font-size:10px; padding:0 12px; }
+.campus-calendar .fc-timegrid-slot-minor { border-top:1px dotted #f0f2ed; }
+.campus-calendar .fc-timegrid-axis-cushion { color:#8b968b; font-size:10px; }
+.campus-calendar .fc-timegrid-col-events { margin:0 4px 0 3px; }
+.campus-calendar .campus-event { border:0; border-left:3px solid var(--event-accent); background:var(--event-bg); color:var(--event-ink); border-radius:7px; box-shadow:none; overflow:hidden; }
+.campus-event.event-tone-0 { --event-bg:#e7eddf; --event-accent:#8ca36e; --event-ink:#4a6040; }
+.campus-event.event-tone-1 { --event-bg:#e2edf1; --event-accent:#83a9b7; --event-ink:#3e6574; }
+.campus-event.event-tone-2 { --event-bg:#eee7f4; --event-accent:#ad94bf; --event-ink:#6c547e; }
+.campus-event.event-tone-3 { --event-bg:#f6e9dc; --event-accent:#c8a078; --event-ink:#896443; }
+.campus-event.event-tone-4 { --event-bg:#f4e4e5; --event-accent:#c4999e; --event-ink:#885e65; }
+.campus-event.event-tone-5 { --event-bg:#e1eeea; --event-accent:#86b0a2; --event-ink:#466d61; }
+.campus-calendar .fc-event-main { color:inherit; }
+.campus-calendar .fc-timegrid-event .fc-event-main { padding:0; container-type:size; }
+.calendar-event-content { display:flex; flex-direction:column; gap:2px; padding:2px 7px; min-width:0; height:100%; overflow:hidden; }
+.calendar-event-content strong { flex-shrink:0; font-size:12px; line-height:14px; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.calendar-event-content strong span { margin-left:5px; font-size:10px; font-weight:450; opacity:.75; }
+.calendar-event-time { flex-shrink:0; font-size:10px; line-height:14px; white-space:nowrap; opacity:.85; }
+.calendar-event-location { flex-shrink:0; font-size:10px; line-height:14px; opacity:.8; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+@container(max-height:49px) { .calendar-event-location { display:none; } }
+@container(max-height:35px) { .calendar-event-content { flex-direction:row; align-items:center; gap:5px; } .calendar-event-content strong { flex:1; min-width:0; } }
+.campus-calendar .fc-daygrid-event .calendar-event-content { padding:4px 6px; gap:2px; }
+.campus-calendar .fc-daygrid-event .calendar-event-location { display:none; }
+.campus-calendar .fc-daygrid-dot-event { background:var(--event-bg); }
+.campus-calendar .fc-timegrid-now-indicator-line { border-color:#bc7660; }
+@media(max-width:800px) {
+ .campus-calendar { height:calc(100dvh - 190px); min-height:550px; }
+ .calendar-toolbar { padding:14px; gap:10px; flex-wrap:wrap; }
+ .calendar-navigation { gap:8px; flex:1; justify-content:space-between; }
+ .calendar-navigation h2 { font-size:14px; }
+ .calendar-grid { overflow-x:auto; }
+ .calendar-grid>.fc { min-width:660px; }
+ .calendar-event-content { padding:5px; }
+}

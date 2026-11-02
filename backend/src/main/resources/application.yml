@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: cuhkcampus
+  config:
+    import: optional:file:.env[.properties],optional:file:../.env[.properties]
+  datasource:
+    url: ${CAMPUS_DATABASE_URL:jdbc:postgresql://127.0.0.1:5438/cuhkcampus}
+    username: ${CAMPUS_DATABASE_USER:campus}
+    password: ${CAMPUS_DATABASE_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+server:
+  address: 127.0.0.1
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        http-only: true
+campus:
+  frontend-url: ${CAMPUS_FRONTEND_URL:http://localhost:8080}
+  chatgpt-host-id-file: ${CAMPUS_CHATGPT_HOST_ID_FILE:../data/chatgpt-host-id}
+  soffice-binary: ${CAMPUS_SOFFICE_BINARY:soffice}
+  storage-root: ${CAMPUS_STORAGE_ROOT:../data/files}
+  blackboard:
+    base-url: https://bb.cuhk.edu.cn
+    curl-binary: ${CAMPUS_CURL_BINARY:curl}
+    chrome-binary: ${CAMPUS_CHROME_BINARY:/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}
+  encryption-key: ${CAMPUS_ENCRYPTION_KEY:}
+  outlook:
+    client-id: ${CAMPUS_OUTLOOK_CLIENT_ID:}
+    redirect-uri: ${CAMPUS_OUTLOOK_REDIRECT_URI:http://localhost:8080/api/v1/connections/outlook/callback}
+

@@ -1,0 +1,14 @@
+name: cuhkcampus
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: cuhkcampus
+      POSTGRES_USER: ${CAMPUS_DATABASE_USER}
+      POSTGRES_PASSWORD: ${CAMPUS_DATABASE_PASSWORD}
+    ports:
+      - "127.0.0.1:5438:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:

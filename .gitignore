@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.tools/
+.m2/
+.vscode/
+.run/
+data/
+backend/data/
+backend/target/
+frontend/node_modules/
+frontend/dist/
+*.log
+.idea/
+.playwright-mcp/
+frontend/*.tsbuildinfo
+__pycache__/
+
