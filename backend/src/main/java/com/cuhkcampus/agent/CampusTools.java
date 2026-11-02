@@ -36,6 +36,10 @@ public class CampusTools {
         var ids=blackboard.contents(userId,courseId,parentId);
         return result("get_course_content",Arrays.asList(courseId,parentId), data.rows("select n.* from content_nodes n join courses c on c.id=n.course_id where c.user_id=? and c.id=? and n.parent_id is not distinct from ?::uuid order by n.position,n.title",userId,courseId,parentId).stream().filter(n->ids==null || n.get("externalId")==null || ids.contains(n.get("id"))).toList());
     }
+    @Tool(name="get_course_gradebook",description="按需读取当前用户一门课程的 Blackboard 成绩簿，包含评分项目、已公布分数、满分和豁免状态。courseId 使用 list_courses 返回的课程 UUID；没有 score 的项目尚无分数，不要当成零分，也不要自行推算未提供的权重。")
+    public Object gradebook(UUID courseId) {
+        return result("get_course_gradebook",List.of(courseId),blackboard.grades(userId,courseId));
+    }
     @Tool(name="list_announcements", description="查看课程公告及正文")
     public Object announcements(UUID courseId,@ToolParam(required=false) Integer limit) {
         var ids=blackboard.announcements(userId,courseId);

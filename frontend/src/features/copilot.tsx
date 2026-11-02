@@ -26,7 +26,7 @@ import { api, params, chat, type Item } from "../api";
 import { Markdown, ErrorText, useData, SearchBox, Modal } from "../components/ui";
 type ToolRun = { id: string; name: string; status: string };
 const toolNames: Record<string, string> = {
-  list_courses: "查询课程", get_course_content: "浏览课程目录", list_announcements: "读取公告",
+  list_courses: "查询课程", get_course_gradebook: "查询课程成绩", get_course_content: "浏览课程目录", list_announcements: "读取公告",
   read_course_content: "读取课程内容", list_content_documents: "查询课程附件", search_documents: "搜索文档",
   read_document: "读取文档", list_mail: "搜索邮件", read_mail: "读取邮件", list_tasks: "查询任务",
   create_or_update_task: "更新任务", get_calendar_events: "查询日程", plan_study_sessions: "安排学习", sync_outlook: "同步邮件",
